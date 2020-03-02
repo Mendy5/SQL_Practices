@@ -8,7 +8,7 @@ type
 # total: the count of all rows
 , count(1)/sum(count(1)) over() as percent
 # the counts per type per status_code accounts for #% of total counts
-, sum(count(1)) over (order by count(1) desc ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+, sum(count(1)) over (order by count(1) desc ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as accum_counts
 # accumulate sum of counts
 from database.table
 group by type
